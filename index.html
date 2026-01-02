@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>歐里寵物沙龍｜犬貓美容服務定型化契約</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 body {
   font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", Arial, sans-serif;
@@ -18,7 +19,9 @@ body {
   padding: 30px;
   border-radius: 8px;
 }
-h1, h2 { text-align: center; }
+h1, h2 {
+  text-align: center;
+}
 h2 {
   margin-top: 40px;
   border-bottom: 1px solid #ddd;
@@ -29,4 +32,152 @@ h2 {
   padding: 15px;
   border-radius: 6px;
 }
-.notice { color: #b00
+.notice {
+  color: #b00020;
+  font-weight: bold;
+}
+.agree-box {
+  margin-top: 40px;
+  padding: 20px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+}
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+}
+#printBtn {
+  background: #666;
+  color: #fff;
+}
+#submitBtn {
+  background: #333;
+  color: #fff;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 列印時隱藏操作 */
+@media print {
+  button, .agree-box {
+    display: none;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>犬、貓美容服務定型化契約</h1>
+
+<div class="info">
+  <p><strong>店家名稱：</strong>歐里寵物沙龍</p>
+  <p><strong>聯絡方式：</strong>LINE：@olliepetsalon</p>
+  <p><strong>營業地址：</strong>桃園市桃園區正光一街88號</p>
+</div>
+
+<p>
+本契約係由歐里寵物沙龍（以下簡稱「甲方」）與寵物飼主（以下簡稱「乙方」），
+就犬、貓美容服務相關事項，本於誠信原則訂立，雙方同意遵守下列條款。
+</p>
+
+<h2>第一條｜服務內容</h2>
+<p>
+甲方提供犬、貓洗澡、美容、修剪及基礎護理等服務，
+實際服務項目與費用依雙方事前或現場約定為準。
+</p>
+
+<h2>第二條｜飼主告知義務</h2>
+<p>
+乙方應於服務前如實告知寵物之年齡、健康狀況、是否具有攻擊性、
+是否曾有咬人、抓傷或特殊疾病等情形。
+</p>
+<p class="notice">
+若乙方未誠實告知，致生任何損害，相關法律及賠償責任概由乙方自行負責。
+</p>
+
+<h2>第三條｜美容風險說明</h2>
+<p>
+乙方了解並同意，美容過程中可能因寵物個性、年齡、健康狀況、
+皮膚狀態、打結程度或不可抗力因素，
+發生抓傷、驚嚇、皮膚紅腫、剃毛不均等風險。
+</p>
+
+<h2>第四條｜緊急狀況與醫療處理</h2>
+<p>
+如美容過程中發現寵物有身體不適或緊急狀況，
+甲方得立即中止服務並通知乙方；
+如無法即時聯繫，甲方得先行送醫，
+其所生之一切醫療及相關費用，概由乙方自行負擔。
+</p>
+
+<h2>第五條｜費用與接回</h2>
+<p>
+乙方應依約定支付美容服務費用。
+服務完成後，乙方應於合理時間內接回寵物，
+逾時未接回者，甲方得依現場公告酌收照護費用。
+</p>
+
+<h2>第六條｜個人資料保護</h2>
+<p>
+甲方因提供服務所蒐集之個人資料，
+僅作為本次服務及聯絡使用，不另作其他用途。
+</p>
+
+<h2>第七條｜準據法與管轄</h2>
+<p>
+本契約如有未盡事宜，悉依中華民國法律處理，
+雙方同意以甲方營業所在地之地方法院為第一審管轄法院。
+</p>
+
+<button id="printBtn" onclick="window.print()">🖨️ 列印契約</button>
+
+<div class="agree-box">
+  <p>
+    <input type="checkbox" id="agree">
+    <label for="agree"><strong>我已閱讀並同意以上所有契約條款</strong></label>
+  </p>
+
+  <p>
+    <strong>請上傳您的簽名（照片或截圖）：</strong><br>
+    <input type="file" id="signature" accept="image/*">
+  </p>
+
+  <button id="submitBtn" disabled>送出並同意契約</button>
+</div>
+
+</div>
+
+<script>
+const agree = document.getElementById("agree");
+const signature = document.getElementById("signature");
+const submitBtn = document.getElementById("submitBtn");
+
+function checkForm() {
+  if (agree.checked && signature.files.length > 0) {
+    submitBtn.disabled = false;
+    submitBtn.style.opacity = "1";
+    submitBtn.style.cursor = "pointer";
+  } else {
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = "0.6";
+    submitBtn.style.cursor = "not-allowed";
+  }
+}
+
+agree.addEventListener("change", checkForm);
+signature.addEventListener("change", checkForm);
+
+submitBtn.addEventListener("click", function () {
+  alert("您已完成契約同意，請將此畫面截圖或簽名圖片提供給店家留存。");
+});
+</script>
+
+</body>
+</html>
